@@ -1,0 +1,115 @@
+# Danh mục phòng ban dùng cho phân quyền.
+# Nguồn: QĐ 503–510/QĐ-ĐSHN ngày 04/03/2026 về chức năng, nhiệm vụ các phòng; quy chế tổ chức và hoạt động
+# các xí nghiệp XN2, XN3, XNBT (thư mục
+# "Nguồn cho AI\Chức Năng Nhiệm Vụ HĐTV, Phòng, XN"). Cần cập nhật khi cơ cấu tổ chức thay đổi.
+#
+#   ma_trong_so_hieu : mã đơn vị đứng cuối số hiệu văn bản do phòng ban hành (31/TB-ATCL, 257/TB-VTQLPT).
+#                      Chỉ dùng để GỢI Ý nhãn; văn bản phải do Công ty ĐSHN ban hành mới áp dụng.
+#   thu_muc          : đoạn đường dẫn thư mục chỉ chứa tài liệu của phòng (để trống nếu kho không sắp theo phòng).
+#   chuc_nang        : tóm tắt chức năng (từ Điều 2 các QĐ trên), dùng cho bước gợi ý nhãn theo nội dung.
+#   ma_tai_lieu      : tiền tố mã tài liệu kỹ thuật (đầu tên file / số hiệu; mẫu bắt đầu bằng "-" thì tìm ở giữa;
+#                      mẫu dài ≥5 ký tự còn tìm ở đầu trang 1). LUẬT CỐ ĐỊNH khi lập file nháp chia (du-thao-chia).
+#                      Hậu tố -1A/-2A/-3A… trong mã là SỐ PHIÊN BẢN, không phải tuyến.
+#   tu_khoa          : từ khóa (không dấu cũng được) để lập danh sách văn bản ỨNG VIÊN cho người duyệt
+#                      (python -m src.access.labels ung-vien --phong <MÃ>); không tự gán nhãn.
+#
+# Mã CHUNG (không khai báo ở đây) là nhãn "tài liệu chung" – mọi người dùng đã đăng ký đều xem được.
+
+phong_ban:
+  BDH:
+    ten: Ban điều hành (Hội đồng thành viên, Tổng Giám đốc, các Phó Tổng Giám đốc)
+    ma_trong_so_hieu: []
+    chuc_nang: Lãnh đạo, điều hành chung Công ty; nghị quyết, quyết định của HĐTV và Tổng Giám đốc.
+    tu_khoa: [Hội đồng thành viên, HĐTV, nghị quyết HĐTV, điều lệ công ty, Kiểm soát viên, chủ sở hữu, quy chế tổ chức và hoạt động]
+
+  VP:
+    ten: Văn phòng
+    ma_trong_so_hieu: []          # "VP" trùng với Văn phòng UBND/Chính phủ trong văn bản đến nên không dùng để gợi ý tự động
+    chuc_nang: >
+      Tổng hợp, hành chính, văn thư lưu trữ, y tế, bảo vệ an ninh trật tự, phòng chống cháy nổ; mua sắm, quản lý
+      thiết bị, tài sản, công cụ dụng cụ, văn phòng phẩm khối văn phòng; tổ chức sự kiện, hội nghị.
+    tu_khoa: [văn thư, lưu trữ, con dấu, y tế, sơ cấp cứu, an ninh trật tự, phòng cháy chữa cháy, PCCC, văn phòng phẩm, tổ chức hội nghị, lễ tân, xe công vụ, tiếp công dân, công cụ dụng cụ]
+
+  TCNS:
+    ten: Phòng Tổ chức – Nhân sự
+    ma_trong_so_hieu: [TCNS]
+    chuc_nang: >
+      Công tác tổ chức, cán bộ; quản lý nhân sự, lao động, tiền lương, chế độ chính sách; đào tạo; thi đua khen thưởng.
+    tu_khoa: [tổ chức cán bộ, nhân sự, tuyển dụng, tiền lương, quỹ lương, nâng lương, hợp đồng lao động, bảo hiểm xã hội, BHXH, đào tạo, bồi dưỡng, thi đua, khen thưởng, kỷ luật, bổ nhiệm, điều động, chế độ chính sách, định biên, quy hoạch cán bộ]
+
+  TCKT:
+    ten: Phòng Tài chính – Kế toán
+    ma_trong_so_hieu: [TCKT]
+    chuc_nang: >
+      Quản lý tài chính và kế toán; tổ chức bộ máy kế toán, hạch toán; tổng hợp báo cáo, kiểm tra, giám sát hoạt động
+      tài chính; thanh quyết toán, thuế, ngân sách.
+    tu_khoa: [tài chính, kế toán, hạch toán, quyết toán, thuế, ngân sách, báo cáo tài chính, kiểm toán, công nợ, tạm ứng, vốn điều lệ, khấu hao, hóa đơn, trợ giá]
+
+  KHDA:
+    ten: Phòng Kế hoạch – Dự án
+    ma_trong_so_hieu: [KHDA]
+    chuc_nang: >
+      Chiến lược phát triển; kế hoạch sản xuất kinh doanh; kế hoạch đầu tư phát triển 5 năm và hằng năm; chuẩn bị và
+      thực hiện dự án đầu tư; đấu thầu, hợp đồng, định mức – đơn giá.
+    tu_khoa: [kế hoạch sản xuất kinh doanh, kế hoạch đầu tư, dự án đầu tư, chủ trương đầu tư, đấu thầu, lựa chọn nhà thầu, hồ sơ mời thầu, gói thầu, định mức, đơn giá, dự toán, tổng mức đầu tư, chiến lược phát triển, đặt hàng]
+
+  ATCL:
+    ten: Phòng An toàn – Chất lượng
+    ma_trong_so_hieu: [ATCL]
+    chuc_nang: >
+      Quản lý, kiểm tra, giám sát trật tự, an toàn giao thông đường sắt đô thị; điều tra, phân tích sự cố, tai nạn;
+      quản lý chất lượng, hệ thống quản lý chất lượng.
+    tu_khoa: [an toàn giao thông, trật tự an toàn, an toàn vận hành, sự cố, tai nạn, điều tra sự cố, quản lý chất lượng, ISO, an toàn lao động, vệ sinh lao động, đánh giá rủi ro, ứng phó sự cố, cứu nạn, diễn tập, hazard, safety, incident, RAMS]
+
+  VTQLPT:
+    ten: Phòng Vận tải và Quản lý phương tiện
+    ma_trong_so_hieu: [VTQLPT, VT&QLPT]
+    chuc_nang: >
+      Quản lý, điều hành vận tải; quản lý kỹ thuật phương tiện (đoàn tàu, phương tiện chuyên dụng), thiết bị Depot,
+      hệ thống thu phí và kiểm soát vé tự động (AFC); biểu đồ chạy tàu, vận hành.
+    tu_khoa: [vận tải, phương tiện, đoàn tàu, chạy tàu, biểu đồ chạy tàu, lái tàu, điều độ, Depot, AFC, soát vé,
+              bán vé, thẻ vé, vé điện tử, vé tháng, vé tuần, thu phí, toa xe, rolling stock, bogie, coupler, pantograph,
+              brake, HANOÏ L3, MAINTENANCE TASK ANALYSIS, CIDM]
+    ma_tai_lieu: [CIDM, -RSK-, HANOÏ L3]          # tài liệu bảo dưỡng đoàn tàu (Alstom tuyến 3), sổ tay đoàn tàu
+
+  QLCSHT:
+    ten: Phòng Quản lý cơ sở hạ tầng
+    ma_trong_so_hieu: [QLCSHT]
+    chuc_nang: >
+      Quản lý hoạt động bảo trì kết cấu hạ tầng đường sắt đô thị: kế hoạch bảo trì, trạng thái kỹ thuật công trình,
+      tổ chức thực hiện, chất lượng và nghiệm thu bảo trì, chi phí; nhà ga, đường ray, cầu cạn, hệ thống cấp điện, thông tin tín hiệu.
+    tu_khoa: [kết cấu hạ tầng, bảo trì, bảo dưỡng công trình, nhà ga, đường ray, cầu cạn, cấp điện, thông tin tín hiệu, SCADA, thang máy, thang cuốn, cửa chắn ke ga, PSD, track, viaduct, power supply, signalling]
+
+  KD:
+    ten: Phòng Kinh doanh
+    ma_trong_so_hieu: [PKD]       # "KD" quá ngắn, dễ trùng mã đơn vị khác; thêm vào khi đã kiểm tra
+    chuc_nang: >
+      Kinh doanh (vé, dịch vụ, khai thác thương mại); chăm sóc khách hàng; đối ngoại và hợp tác quốc tế.
+    tu_khoa: [doanh thu, hoạt động kinh doanh, khách hàng, chăm sóc khách hàng, hành khách, quảng cáo, khai thác thương mại, dịch vụ thương mại, cho thuê mặt bằng, giá vé, miễn giảm giá vé, truyền thông, đối ngoại, hợp tác quốc tế, marketing]
+
+  # Các xí nghiệp (chi nhánh) – theo quy chế tổ chức và hoạt động do HĐTV ban hành.
+  # ma_trong_so_hieu để trống: chưa xác nhận mã đơn vị dùng trong số hiệu văn bản của xí nghiệp.
+  XN2:
+    ten: Xí nghiệp Vận hành Tuyến ĐSĐT số 2A Cát Linh – Hà Đông
+    ma_trong_so_hieu: []
+    chuc_nang: >
+      Chi nhánh trực thuộc Công ty (QĐ 228/QĐ-ĐSHN ngày 15/02/2025): vận hành, khai thác tuyến đường sắt đô thị số 2A
+      Cát Linh – Hà Đông.
+    tu_khoa: [Cát Linh, Hà Đông, tuyến 2A, tuyến số 2A, Line 2A]
+    ma_tai_lieu: [TXWJ-, JXGC-]                   # quy trình, biện pháp của nhà thầu vận hành tuyến 2A (Cục 6 ĐS Trung Quốc)
+
+  XN3:
+    ten: Xí nghiệp Vận hành Tuyến ĐSĐT số 3 Nhổn – ga Hà Nội
+    ma_trong_so_hieu: []
+    chuc_nang: >
+      Chi nhánh trực thuộc Công ty (QĐ 229/QĐ-ĐSHN ngày 15/02/2025): vận hành, khai thác tuyến đường sắt đô thị số 3
+      Nhổn – ga Hà Nội.
+    tu_khoa: [Nhổn, ga Hà Nội, tuyến số 3, tuyến 3, Line 3, HPLML3, Metro Line 3]
+    ma_tai_lieu: [PIC-, UJV-, VC2-, PSC-, HPLML, HMC-L3, CIDM, HANOÏ L3]   # dự án tuyến 3 Nhổn – ga Hà Nội
+
+  XNBT:
+    ten: Xí nghiệp quản lý, bảo trì kết cấu hạ tầng đường sắt đô thị
+    ma_trong_so_hieu: []
+    chuc_nang: >
+      Chi nhánh trực thuộc Công ty (quy chế ban hành ngày 12/10/2026): quản lý, bảo trì kết cấu hạ tầng đường sắt đô thị.
+    tu_khoa: [bảo trì kết cấu hạ tầng, Xí nghiệp bảo trì, XNBT, sửa chữa công trình, kiểm tra định kỳ công trình]

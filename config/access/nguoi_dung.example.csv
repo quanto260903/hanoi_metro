@@ -1,0 +1,6 @@
+﻿email,ho_ten,phong,vai_tro,xem_them
+# Mỗi dòng một người dùng; email phải TRÙNG email đăng nhập LibreChat. Dòng bắt đầu bằng # bị bỏ qua.,,,,
+# phong: mã trong phong_ban.yaml (BDH VP TCNS TCKT KHDA ATCL VTQLPT QLCSHT KD). vai_tro: quan_tri lanh_dao truong_phong pho_phong nhan_vien,,,,
+# xem_them: mã phòng xem thêm ngoài phòng mình (cách nhau bằng ;). Ví dụ (dữ liệu giả):,,,,
+# nguyen.van.a@vidu.vn,Nguyễn Văn A,KHDA,nhan_vien,,
+# tran.thi.b@vidu.vn,Trần Thị B,KHDA,truong_phong,TCKT,

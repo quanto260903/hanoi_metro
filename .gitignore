@@ -1,0 +1,17 @@
+# Bí mật và dữ liệu nội bộ – KHÔNG đưa lên repo
+.env
+data/
+_backup*/
+docs/
+tests/fixtures/
+config/access/nguoi_dung.csv
+config/access/dang_ky*.csv
+
+# Môi trường và cache
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+*.sqlite
+*.log

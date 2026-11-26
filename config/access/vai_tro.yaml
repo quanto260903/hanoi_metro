@@ -1,0 +1,53 @@
+# Vai trò → phạm vi xem và chức năng được dùng. Hệ thống TRA BẢNG này, không dùng AI để quyết định quyền.
+#
+#   xem: tat_ca                    → xem toàn bộ kho (trừ tài liệu mật – không bao giờ có trong chỉ mục)
+#   xem: [phong_minh, CHUNG, ...]  → văn bản có nhãn phòng của chính người dùng, tài liệu chung, hoặc mã phòng ghi thêm
+#   chuc_nang: hoi_dap | tom_tat | soan_thao | liet_ke
+#
+# Ngoài ra trong nguoi_dung.csv: cột xem_them (mã phòng, cách nhau bằng ;) và file cap_rieng.csv (cấp riêng từng văn bản).
+
+# Người dùng đã khai báo phòng ban (/phongban) nhưng CHƯA được duyệt (chưa có trong nguoi_dung.csv):
+#   tu_choi              → không xem được văn bản nào cho tới khi được duyệt (khuyến nghị)
+#   chi_tai_lieu_chung   → chỉ xem tài liệu chung, chỉ hỏi đáp và liệt kê
+# Người chưa khai báo luôn nhận hướng dẫn khai báo, không dùng được kho tài liệu.
+nguoi_dung_chua_dang_ky: tu_choi
+
+# Khai báo phòng ban khi bắt đầu dùng trợ lý (lệnh /phongban trong khung chat; email do LibreChat xác thực).
+khai_bao_phong_ban:
+  # false (khuyến nghị): khai báo chờ trưởng phòng / quản trị duyệt (/duyet trong chat hoặc python -m src.access.users).
+  # true: tự động thêm vào nguoi_dung.csv với vai trò nhan_vien – chỉ dùng khi thí điểm: ai cũng chọn được phòng bất kỳ.
+  tu_dong_duyet: false
+  # Chỉ email thuộc các tên miền này được khai báo (vd [hanoimetro.vn]); để [] = không giới hạn.
+  ten_mien_email: []
+
+# Quyền duyệt khai báo (trong từng vai trò):  duyet: tat_ca      → duyệt mọi phòng, cấp được mọi vai trò
+#                                            duyet: phong_minh  → chỉ duyệt người khai báo vào phòng mình, chỉ cấp nhan_vien
+
+vai_tro:
+  quan_tri:
+    ten: Quản trị hệ thống
+    xem: tat_ca
+    duyet: tat_ca
+    chuc_nang: [hoi_dap, tom_tat, soan_thao, liet_ke]
+
+  lanh_dao:
+    ten: Lãnh đạo Công ty (HĐTV, Tổng Giám đốc, Phó Tổng Giám đốc)
+    xem: tat_ca
+    chuc_nang: [hoi_dap, tom_tat, soan_thao, liet_ke]
+
+  truong_phong:
+    ten: Trưởng phòng / Chánh Văn phòng
+    # Theo yêu cầu ban đầu "trưởng phòng xem được hết": đổi dòng dưới thành  xem: tat_ca
+    xem: [phong_minh, CHUNG]
+    chuc_nang: [hoi_dap, tom_tat, soan_thao, liet_ke]
+    duyet: phong_minh
+
+  pho_phong:
+    ten: Phó trưởng phòng
+    xem: [phong_minh, CHUNG]
+    chuc_nang: [hoi_dap, tom_tat, soan_thao, liet_ke]
+
+  nhan_vien:
+    ten: Nhân viên
+    xem: [phong_minh, CHUNG]
+    chuc_nang: [hoi_dap, tom_tat, soan_thao, liet_ke]

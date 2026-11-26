@@ -1,0 +1,48 @@
+# ==============================================================================
+# HANOI METRO AI AGENT - DEPENDENCIES (PHASE 1: INGESTION PIPELINE)
+# ==============================================================================
+
+# Core Configuration & Environment Management
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.1
+
+# AI Model Inference (Local Ollama VLM & OpenAI-compatible Client)
+httpx>=0.27.0            # Gọi trực tiếp Ollama REST API (/api/chat, /api/tags)
+openai>=1.14.0           # OpenAI-compatible API client cho LLM & Embedding
+ollama>=0.3.0            # Python SDK chính thức của Ollama (tùy chọn)
+tenacity>=8.2.3          # Tự động retry khi model bận hoặc lỗi kết nối
+
+# PDF Processing, Parsing & High-Resolution 300 DPI Rendering
+pymupdf>=1.24.0          # fitz: Cốt lõi bóc tách văn bản, tọa độ vector và render 300 DPI
+pdfplumber>=0.11.0       # Hỗ trợ bóc tách bảng biểu thuần text từ vector PDF
+
+# Computer Vision & Page Classification
+opencv-python-headless>=4.9.0.80  # Xử lý ảnh: tính độ mờ (Laplacian), góc nghiêng (skew), hình thái bảng
+numpy>=1.26.0
+pillow>=10.2.0
+
+# Vector Database & Retrieval (Dev qua Docker & Client tương tác)
+qdrant-client>=1.10.0     # Query API: prefetch dense + sparse, gộp RRF trên server
+
+# Phase 2: Hybrid Embedding & Reranking (Tùy chọn: Chạy local weights BGE-M3 / FlagEmbedding)
+# FlagEmbedding>=1.2.10
+# torch>=2.1.0
+# transformers>=4.38.0
+
+# Phase 3: Trợ lý tài liệu (hỏi đáp, tóm tắt, soạn báo cáo) & MCP server cho LibreChat
+pyyaml>=6.0               # Đọc YAML frontmatter của file Markdown đã bóc tách
+mcp>=2.0,<3               # MCP Python SDK (MCPServer, streamable-http)
+pytest>=8.0               # tests/unit
+
+# Nhánh từ khóa PostgreSQL khi triển khai (KEYWORD_BACKEND=postgres)
+# psycopg[binary]>=3.2
+# psycopg_pool>=3.2
+
+# Text Formatting & CLI Helpers
+tabulate>=0.9.0
+tqdm>=4.66.2
+
+# Document OCR Engines (Luồng STANDARD_OCR)
+rapidocr-onnxruntime>=1.3.8
+# docling>=1.0.0

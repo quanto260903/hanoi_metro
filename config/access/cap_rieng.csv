@@ -1,0 +1,3 @@
+email,doc_id,ghi_chu
+# Cấp quyền xem RIÊNG từng văn bản cho một người (ngoài phạm vi phòng). doc_id: 32 ký tự (xem bằng /lietke hoặc file nhãn).,,
+# nguyen.van.a@vidu.vn,0123456789abcdef0123456789abcdef,ví dụ (dữ liệu giả),

@@ -1,0 +1,50 @@
+version: '3.8'
+
+# ==============================================================================
+# HANOI METRO AI AGENT - DOCKER COMPOSE CHO MÔI TRƯỜNG DEV (QDRANT & OLLAMA VLM)
+# ==============================================================================
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.11.0
+    container_name: hanoi_metro_qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST API & Web Dashboard (truy cập: http://localhost:6333/dashboard)
+      - "6334:6334"   # gRPC API hiệu năng cao
+    volumes:
+      # Lưu trữ dữ liệu vector và snapshot trên máy host local
+      - ./data/qdrant_storage:/qdrant/storage:z
+    environment:
+      - QDRANT__SERVICE__GRPC_PORT=6334
+      - QDRANT__LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Ollama đang chạy trực tiếp trên Windows (chứa qwen2.5:3b, hanoi-metro-qwen2.5:3b, bge-m3).
+  # Container này trùng cổng 11434 và có kho model khác, nên chỉ bật khi cần:
+  #   docker compose --profile ollama-docker up -d ollama
+  ollama:
+    profiles: ["ollama-docker"]
+    image: ollama/ollama:latest
+    container_name: hanoi_metro_ollama
+    restart: "no"
+    ports:
+      - "11434:11434" # Ollama API & OpenAI-compatible endpoint (http://localhost:11434)
+    volumes:
+      # Lưu trữ các weights model VLM đã tải về trên máy host local
+      - ./data/ollama_storage:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_HOST=0.0.0.0:11434
+    # Kích hoạt GPU NVIDIA nếu triển khai trên server hoặc máy có card đồ họa:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]

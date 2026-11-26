@@ -1,0 +1,6 @@
+# Biến thể qwen2.5:3b cho LibreChat: LibreChat gọi Ollama qua /v1 (không truyền được num_ctx),
+# nên context 16k được cố định trong model thay vì dùng mặc định OLLAMA_CONTEXT_LENGTH (4096 trên máy này).
+# Tạo: ollama create hanoi-metro-qwen2.5:3b -f ollama/Modelfile.qwen2.5-3b-16k
+FROM qwen2.5:3b
+PARAMETER num_ctx 16384
+PARAMETER temperature 0.1
